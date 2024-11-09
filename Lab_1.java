@@ -1,43 +1,32 @@
-import java.util.*;
+import java.util.Scanner;
 
-// Quadratic Equation
-public class Lab_1 {
-    public static void main(String args[]){
-        int a,b,c;
-        float r1,r2;
-        Scanner in = new Scanner(System.in);
-        System.out.println("Enter the value of a,b,c :");
-        a = in.nextInt();
-        b = in.nextInt();
-        c = in.nextInt();
-        int disc = (b*b)-(4*a*c);
-        if (disc>0)
-        {
-            System.out.println("Real and distinct roots");
-            r1 = (float)((-b)+(disc*0.5))/(2*a);
-            r2 = (float)((-b)-(disc*0.5))/(2*a);
-            System.out.println("Root 1 = "+r1);
-            System.out.println("Root 2 = "+r2);
+class Quadi{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter coefficient a: ");
+        double a = scanner.nextDouble();
+        System.out.print("Enter coefficient b: ");
+        double b = scanner.nextDouble();
+        System.out.print("Enter coefficient c: ");
+        double c = scanner.nextDouble();
+
+        double discriminant = b * b - 4 * a * c;
+
+        if (discriminant > 0) {
+            double r1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+            double r2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+            System.out.printf("Roots are real and different.\nRoot 1: %.2f\nRoot 2: %.2f\n", r1, r2);
+        } else if (discriminant == 0) {
+            double r1 = -b / (2 * a);
+            System.out.printf("Roots are equal.\nRoot: %.2f\n", r1);
+        } else {
+            double realPart = -b / (2 * a);
+            double imaginaryPart = Math.sqrt(-discriminant) / (2 * a);
+            System.out.printf("Roots are complex and different.\nRoot 1: %.2f + %.2fi\nRoot 2: %.2f - %.2fi\n",
+                    realPart, imaginaryPart, realPart, imaginaryPart);
         }
-        else if (disc==0)
-        {
-            System.out.println("Real and equal");
-            r1 = (float)((-b)+(disc*0.5))/(2*a);
-            r2 = (float)((-b)-(disc*0.5))/(2*a);
-            System.out.println("Root 1 = "+r1);
-            System.out.println("Root 2 = "+r2);
-        }
-        else if (disc<0)
-        {
-            System.out.println("Imaginary Roots ");
-            r1 = (float)(-b)/(2*a);
-            r2 = (float)(disc)/(2*a);
-            System.out.println("Root 1 = "+r1+" "+(+r2)+"i");
-            System.out.println("Root 2 = "+r1+" "+(-r2)+"i");
-        }
-        else
-        {
-            System.out.println("Error Calculating the Result");
-        }
-        }
+
+        scanner.close();
     }
+}
